@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block head %}
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-157136492-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-157136492-1');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="https://presensi.its.ac.id/assets/media/favicons/favicon-web.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://presensi.its.ac.id/assets/media/favicons/favicon-web.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://presensi.its.ac.id/assets/media/favicons/favicon-web.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://presensi.its.ac.id/assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="https://presensi.its.ac.id/assets/plugins/clockpicker/dist/jquery-clockpicker.min.css">
+    <link rel="stylesheet" href="https://presensi.its.ac.id/assets/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://presensi.its.ac.id/assets/plugins/magnific-popup/magnific-popup.css">
+
+    <!-- Fonts and Codebase framework -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
+    <link rel="stylesheet" id="css-main" href="https://presensi.its.ac.id/assets/css/codebase.min.css">
+    <link rel="stylesheet" href="https://presensi.its.ac.id/assets/css/created/style.css">
+    <link rel="stylesheet" href="https://presensi.its.ac.id/assets/css/its/its.css">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
+    <!-- END Stylesheets -->
+
+{% endblock %}
+
+{% block title %}
+    Authors
+{% endblock title %}
+
+{% block navbar %}
+<div id="page-container" class="enable-page-overlay side-scroll page-header-modern main-content-boxed side-trans-enabled">
+<header id="page-header">
+    <!-- Header Content -->
+    <div class="content-header">
+        <!-- Left Section -->
+        <div class="content-header-section">
+            <!-- Toggle Sidebar -->
+            <div class="content-header-item">
+                <a class="font-w700" href="/find">
+                    <img src="https://presensi.its.ac.id/assets/media/img/myits-academics.png" alt="Logo ITS" height="40px" class="mr-5">
+                    <span class="font-size-l text-its-secondary text-uppercase">Collaborator</span>
+                </a>
+            </div>
+            <!-- END Toggle Sidebar -->
+        </div>
+        <!-- END Left Section -->
+
+        <!-- Right Section -->
+        <div class="content-header-section">
+                <a href="/authors" class="btn btn-rounded btn-dual-secondary" data-toggle="layout">
+                    Authors
+                </a>
+                <a href="/papers" class="btn btn-rounded btn-dual-secondary" data-toggle="layout">
+                    Papers
+                </a>
+                            <!-- User Dropdown -->
+            <!-- END User Dropdown -->
+        </div>
+        <!-- END Right Section -->
+    </div>
+    <!-- END Header Content -->
+
+    <!-- Header Loader -->
+    <div id="page-header-loader" class="overlay-header bg-primary">
+        <div class="content-header content-header-fullrow text-center">
+            <div class="content-header-item">
+                <i class="fa fa-sun-o fa-spin text-white"></i>
+            </div>
+        </div>
+    </div>
+    <!-- END Header Loader -->
+</header>
+{% endblock navbar %}
+
+{% block content %}
+<main id="main-container" style="min-height: 821px;">
+		
+	<div class="content">
+		<div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
+			<div class="col-md-12">
+				<div class="block">
+					<div class="block-content block-content-full">
+						<div class="row py-20">
+							<div class="col-12 col-md-12 col-xl-6 text-left">
+								<div class="row push-item">
+									<div class="col-12">
+										<div class="text-left float-left">
+											<div class="font-size-h6 font-w400 text-its-black">Selamat malam</div>
+											<div class="font-size-lg font-w600 text-its-black">SAMUEL MARCELLINUS</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        {% if users.has_other_pages %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                {% if users.has_other_pages %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                       {% if users.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ users.previous_page_number }}" tabindex="-1" style="color:#013880;">Previous</a>
+                        </li>
+                       {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                       {% endif %}
+        
+                      
+                       {% for i in users.paginator.page_range %}
+                       {% if users.number == i %}
+                           <li class="page-item active"><span class="page-link" style="background-color:#013880;">{{ i }} <span class="sr-only">(current)</span></span></li>
+                       {% else %}
+                           <li class="page-item"><a href="?page={{ i }}" class="page-link" style="color:#013880;">{{ i }}</a></li>
+                       {% endif %}
+                       {% endfor %}
+        
+                      {% if users.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ users.next_page_number }}" style="color:#013880;">Next</a>
+                      </li>
+                        {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                  </nav>
+                {% endif %}
+            </ul>
+          </nav>
+        {% endif %}
+		<div class="row js-appear-enabled animated fadeIn" data-toggle="appear">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="block">
+							<div class="block-header block-header-default">
+								<div class="row">
+									<div class="col-12">
+										<div class="font-size-h6 font-w500 mb-0">List Paper</div>
+									</div>
+								</div>
+                            </div>
+                            
+							<div class="block-content">
+								<div class="ribbon-box">
+									<i class="fa fa-fw fa-clock-o"></i>
+								</div>
+								<div class="row py-5">
+									<div class="col-12" style="padding: 0px;">
+										<ul style="list-style-type: none; padding-left: 0px;">
+                                            {% for paper in users %}
+                                                    <li>
+														<div class="content-li" style="padding: 0 20px 0 20px;">
+															<h5 class="font-size-h6 font-w500 mb-5">
+																<a href="https://presensi.its.ac.id/tatap-muka/20192:51100:IF184602:B">
+																	<span class="badge badge-its-primary mr-2">{{ paper.id_pub }}</span>
+																	<br class="d-sm-none mb-1">
+																	{{ paper.title }}
+																</a>
+															</h5>
+															<div class="row">
+																		<div class="col">
+																			<span class="mr-10">
+					                                                            <i class="fa fa-fw fa-calendar-o mr-1"></i>{{ paper.year }}</span>
+																			<span class="mr-10">
+					                                                            <i class="fa fa-user-circle"></i> {{ paper.authors }}</span>
+																		</div>
+															</div>
+														</div>
+													    <hr>
+                                                    </li>
+                                            {% endfor %}									
+                                        </ul>
+									</div>
+								</div>
+							</div>
+							<div class="block-content block-content-full bg-body-light font-size-xs font-italic">
+								Rekomendasi diberikan berdasarkan Cosine Similarity terdekat dengan judul paper yang anda masukkan
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6"></div>
+		</div>
+	</div>
+
+	</main>
+{% endblock content %}
+
+{% block footer %}
+    <footer id="page-footer" class="opacity-0" style="opacity: 1;">
+		<div class="content py-20 font-size-xs clearfix">
+			<div class="row align-items-center">
+				<div class="col-6">Copyright © <span class="js-year-copy js-year-copy-enabled">2020</span> Institut Teknologi Sepuluh Nopember</div>
+				<div class="col-6 text-right">
+					<img src="https://presensi.its.ac.id/assets/media/img/logo-its-biru.png" height="40">
+					<img src="https://presensi.its.ac.id/assets/media/img/logo-its-semangat-baru.png" height="40px">
+				</div>
+			</div>
+		</div>
+    </footer>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://presensi.its.ac.id/assets/js/codebase.core.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/js/codebase.app.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/plugins/select2/js/select2.full.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/plugins/masked-inputs/jquery.maskedinput.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/plugins/cleavejs/dist/cleave.min.js"></script>
+    <script src="https://presensi.its.ac.id/assets/js/created/activity.js"></script>
+    <script src="https://presensi.its.ac.id/assets/js/created/clockpicker.js"></script>
+    <script src="https://presensi.its.ac.id/assets/js/created/kehadiran-mahasiswa.js"></script>
+    <script src="https://presensi.its.ac.id/assets/js/created/kehadiran-dosen.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <script>
+	$('.input-time').toArray().forEach(function (field) {
+		new Cleave(field, {
+			time: true,
+			timePattern: ['h', 'm']
+		});
+	});
+
+	jQuery(function () {
+		Codebase.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider', 'tags-inputs', 'slimscroll', 'magnific-popup']);
+	});
+    </script>
+{% endblock %}

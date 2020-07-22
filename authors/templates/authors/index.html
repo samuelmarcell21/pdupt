@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Authors
+{% endblock title %}
+
+{% block navbar %}
+<div id="page-container" class="sidebar-inverse side-scroll page-header-fixed page-header-glass page-header-inverse main-content-boxed side-trans-enabled">
+    <header id="page-header" class="bg-primary-dark">
+        <!-- Header Content -->
+        <div class="content-header">
+            <!-- Left Section -->
+            <div class="content-header-section">
+                <!-- Logo -->
+                <a class="logo" href="/">
+                    <img srcset="https://my.its.ac.id/assets/media/img/@2x/myits-sso-white.png 2x, https://my.its.ac.id/assets/media/img/myits-sso-white.png 1x" src="https://my.its.ac.id/assets/media/img/myits-sso-white.png" width="100px" alt="home" class="dark-logo">
+                </a>
+                <!-- END Logo -->
+            </div>
+            <!-- END Left Section -->
+
+            <!-- Right Section -->
+            <div class="content-header-section">
+                <!-- Header Navigation -->
+                <!--
+                Desktop Navigation, mobile navigation can be found in #sidebar
+                -->
+                <ul class="nav-main-header">
+                    <li>
+                        <a href="/authors">Authors</a>
+                    </li>
+                    <li>
+                        <a href="/papers">Papers</a>
+                    </li>
+                </ul>
+
+                <!-- END Header Navigation -->
+
+                <!-- Toggle Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
+                    <i class="fa fa-navicon"></i>
+                </button>
+                <!-- END Toggle Sidebar -->
+            </div>
+            <!-- END Right Section -->
+        </div>
+        <!-- END Header Content -->
+
+        <!-- Header Loader -->
+        <div id="page-header-loader" class="overlay-header bg-primary">
+            <div class="content-header content-header-fullrow text-center">
+                <div class="content-header-item">
+                    <i class="fa fa-sun-o fa-spin text-white"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- END Header Loader -->
+    </header>
+{% endblock navbar %}
+
+{% block content %}
+
+    <div id="todays-table">
+        <table class="table" style="font-family: 'Quicksand', sans-serif;">
+            <caption>Total Records: 4000</caption>
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Authors
+                    </th>
+                    <th scope="col">
+                        Position
+                    </th>
+                    <th scope="col">
+                        Education
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in Authors %}
+                <tr>
+                    <td class="align-middle">
+                        {{ author.name }}
+                        <br>
+                        Universitas : {{ author.id_univ }}
+                        <br>
+                        NIDN : {{ author.nidn }}
+                    </td>
+                    <td class="align-middle">
+                        {{ author.position }}
+                    </td>
+                    <td class="align-middle">
+                        {{ author.education }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock content %}
